@@ -1,3 +1,8 @@
+This repository exists mainly for the compiled files in the `public` folder.
+
+Original Source - https://github.com/iam-medvedev/chrome-devtools
+
+
 # Automated Chrome DevTools frontend builder
 
 This repository contains a [Github Action](.github/workflows/build.yml) that runs once a week on a schedule, builds the [Chrome DevTools frontend](https://chromium.googlesource.com/devtools/devtools-frontend) source code, and sends the build code to the [main](https://github.com/iam-medvedev/chrome-devtools/tree/main) branch via [PR](https://github.com/iam-medvedev/chrome-devtools/pulls?q=is%3Apr+label%3Aauto-build).
