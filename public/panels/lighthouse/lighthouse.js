@@ -1436,7 +1436,7 @@ var LighthouseReportRenderer = class _LighthouseReportRenderer {
       if (!id) {
         continue;
       }
-      auditEl.setAttribute("jslog", `${VisualLogging.item(`lighthouse.audit.${id}`)}`);
+      auditEl.setAttribute("jslog", `${VisualLogging.item(`lighthouse.audit.${id}`).track({ resize: true })}`);
       let state;
       for (const className of auditEl.classList) {
         switch (className) {
@@ -3022,24 +3022,12 @@ var LighthousePanel = class _LighthousePanel extends UI7.Panel.Panel {
     }
   }
 };
-
-// gen/front_end/panels/lighthouse/LighthouseReporterTypes.js
-var LighthouseReporterTypes_exports = {};
-__export(LighthouseReporterTypes_exports, {
-  LighthouseReportGenerator: () => LighthouseReportGenerator
-});
-var LighthouseReportGenerator = class {
-  generateReportHtml(_lhr) {
-    return "";
-  }
-};
 export {
   LighthouseController_exports as LighthouseController,
   LighthousePanel_exports as LighthousePanel,
   LighthouseProtocolService_exports as LighthouseProtocolService,
   LighthouseReportRenderer_exports as LighthouseReportRenderer,
   LighthouseReportSelector_exports as LighthouseReportSelector,
-  LighthouseReporterTypes_exports as LighthouseReporterTypes,
   LighthouseStartView_exports as LighthouseStartView,
   LighthouseStatusView_exports as LighthouseStatusView,
   RadioSetting_exports as RadioSetting

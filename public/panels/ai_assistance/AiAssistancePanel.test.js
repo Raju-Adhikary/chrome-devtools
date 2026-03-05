@@ -951,12 +951,16 @@ describeWithMockConnection('AI Assistance Panel', () => {
             contextMenu.invokeHandler(id);
             nextInput = await view.nextInput;
             assert(nextInput.state === "chat-view" /* AiAssistancePanel.ViewState.CHAT_VIEW */);
+            const modelResponse = nextInput.props.messages.find(m => m.entity === "model" /* AiAssistancePanel.ChatMessage.ChatMessageEntity.MODEL */);
+            assert.isOk(modelResponse);
             view.input.onDeleteClick();
             nextInput = await view.nextInput;
             assert(nextInput.state === "chat-view" /* AiAssistancePanel.ViewState.CHAT_VIEW */);
+            nextInput.props.walkthrough.onOpen(modelResponse);
             assert.deepEqual(nextInput.props.messages, []);
             sinon.assert.callCount(deleteHistoryEntrySpy, 1);
             assert.isString(deleteHistoryEntrySpy.lastCall.args[0]);
+            assert.isNull(nextInput.props.walkthrough.activeMessage);
             const menuAfterDelete = openHistoryContextMenu(view.input, 'User question to Freestyler?');
             assert.isUndefined(menuAfterDelete.id);
         });

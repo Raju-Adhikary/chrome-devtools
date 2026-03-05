@@ -1828,6 +1828,7 @@ var knownContextValues = /* @__PURE__ */ new Set([
   "greendev",
   "greendev-ai-annotations-enabled",
   "greendev-artifact-viewer-enabled",
+  "greendev-breakpoint-debugger-agent-enabled",
   "greendev-copy-to-gemini-enabled",
   "greendev-in-devtools-floaty-enabled",
   "greendev-inline-widgets-enabled",
@@ -2090,6 +2091,7 @@ var knownContextValues = /* @__PURE__ */ new Set([
   "java-script-disabled-true",
   "javascript",
   "javascript-context",
+  "jpeg-xl",
   "jpeg-xl-format-disabled",
   "jpeg-xl-format-disabled-true",
   "jpg-header",
@@ -3582,6 +3584,7 @@ var knownContextValues = /* @__PURE__ */ new Set([
   "show-ad-highlights",
   "show-ad-highlights-true",
   "show-adorner-settings",
+  "show-all",
   "show-all-properties",
   "show-as-javascript-object",
   "show-console-insight-teasers",
@@ -3751,6 +3754,7 @@ var knownContextValues = /* @__PURE__ */ new Set([
   "srgb",
   "stack-trace",
   "stalled",
+  "standalone-styles",
   "standard-emulated-device-list",
   "start",
   "start-conversation-drjones-file",
@@ -5248,6 +5252,10 @@ function checkPendingEventExpectation() {
     }
     if (!found) {
       processMissingEvents(pendingEventExpectation, expectedEventIndex, matchedImpressions);
+      if (!pendingEventExpectation.missingEvents?.length) {
+        numMatchedEvents = actualEventIndex;
+        pendingEventExpectation.success();
+      }
       return;
     }
   }
