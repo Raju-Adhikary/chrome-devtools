@@ -49,7 +49,8 @@ jobs:
               echo "Processing package: $scoped_name"
 
               # Get published version for this specific package
-              published_version=$(npm show "$scoped_name" version 2>/dev/null || echo "0.0.0")
+              # published_version=$(npm show "$scoped_name" version 2>/dev/null || echo "0.0.0")
+              published_version=$(node -p "require('$package_dir/package.json').version")
               IFS='.' read -r major date patch <<< "$published_version"
 
               # Create new version
@@ -71,12 +72,17 @@ jobs:
               cd ../..
               git add "$package_dir/package.json"
               git commit -m "Release $scoped_name v$new_version" || true
-              git tag -a "$tag_name" -m "Release $scoped_name v$new_version" --force
-              git push origin "$tag_name" || true
+              # git tag -a "$tag_name" -m "Release $scoped_name v$new_version" --force
+              # git push origin "$tag_name" || true
+              git tag -f "$tag_name"
+              git push origin "$tag_name" --force
+
+              
 
               # Publish package
               cd "$package_dir"
-              npm publish --access public
+              # npm publish --access public
+              echo "Skipping npm publish for $scoped_name"
               cd ../..
 
               echo "Successfully published $scoped_name v$new_version"
