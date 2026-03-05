@@ -1,7 +1,9 @@
+![GitHub repo size](https://img.shields.io/github/repo-size/Raju-Adhikary/chrome-devtools)
+![GitHub last commit](https://img.shields.io/github/last-commit/Raju-Adhikary/chrome-devtools)
+
 This repository exists mainly for the compiled files in the `public` folder.
 
 Original Source - https://github.com/iam-medvedev/chrome-devtools
-
 
 # Automated Chrome DevTools frontend builder
 
