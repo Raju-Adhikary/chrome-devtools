@@ -1,9 +1,14 @@
 name: build
 
+# Trigger settings for the GitHub Actions workflow
 on:
+  # Allows the workflow to be run manually from the GitHub Actions UI
   workflow_dispatch:
-  schedule:
-    - cron: "0 0 * * 0"
+  
+  # Scheduled trigger (currently disabled/commented)
+  # This would run the workflow automatically every Sunday at 00:00 UTC
+  # schedule:
+  #   - cron: "0 0 * * 0"
 
 permissions:
   contents: write
@@ -73,9 +78,10 @@ jobs:
           add-paths: |
             public
 
-      - name: Merge PR
-        uses: peter-evans/enable-pull-request-automerge@v3
-        with:
-          pull-request-number: ${{ steps.create_pr.outputs.pull-request-number }}
-          merge-method: squash
-          token: ${{ secrets.PAT }}
+    # Do not Marge automatically
+    #  - name: Merge PR
+    #    uses: peter-evans/enable-pull-request-automerge@v3
+    #    with:
+    #      pull-request-number: ${{ steps.create_pr.outputs.pull-request-number }}
+    #      merge-method: squash
+    #      token: ${{ secrets.PAT }}
